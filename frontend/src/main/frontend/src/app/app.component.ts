@@ -6,5 +6,7 @@ import {Component} from "@angular/core";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Relveo works!';
+  title = 'Relveo App!';
+  color = 'primary';
+  mode = 'indeterminate';
 }
