@@ -1,48 +1,63 @@
 <md-toolbar>
   <span>{{title}}</span>
-  <!--<md-toolbar-row>
-    <button md-raised-button color="primary">1</button>
-    <button md-raised-button color="accent">2</button>
-    <button md-raised-button color="warn">3</button>
-  </md-toolbar-row>-->
 </md-toolbar>
+
+<!--
 <md-tab-group>
+  <md-tab routerLink="/dashboard" routerLinkActive="active">
+    <template md-tab-label>
+      <md-icon>dashboard</md-icon>
+      Dashboard
+    </template>
+
+  </md-tab>
   <md-tab>
     <template md-tab-label>
       <md-icon>flash_on</md-icon>
       Electricity
     </template>
-    <h1>Best pasta restaurants</h1>
-    <p>...</p>
+
   </md-tab>
   <md-tab>
     <template md-tab-label>
       <md-icon>whatshot</md-icon>
       Heating
     </template>
-    <h1>Terrible sushi restaurantssss</h1>
-    <p>...</p>
+
   </md-tab>
   <md-tab>
     <template md-tab-label>
       <md-icon>opacity</md-icon>
       Water
     </template>
-    <h1>Terrible sushi restaurants</h1>
-    <p>...</p>
+
   </md-tab>
 </md-tab-group>
-
-<!--<nav md-tab-nav-bar>
+-->
+<nav md-tab-nav-bar>
   <a md-tab-link
-     *ngFor="let link of navLinks"
-     [routerLink]="link"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">
-    {{tabLink.label}}
+     routerLink="/dashboard"
+  >
+    <md-icon>dashboard</md-icon>
+    Dashboard
+  </a>
+  <a md-tab-link
+     routerLink="/electricity">
+
+    <md-icon>flash_on</md-icon>
+    Electricity
+  </a>
+  <a md-tab-link
+     routerLink="/heating">
+
+    <md-icon>whatshot</md-icon>
+    Heating
+  </a>
+  <a md-tab-link
+     routerLink="/water">
+    <md-icon>opacity</md-icon>
+    Water
   </a>
 </nav>
-
 <router-outlet></router-outlet>
--->
 
