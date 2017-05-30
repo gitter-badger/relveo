@@ -13,11 +13,16 @@
       "node_modules/@types"
     ],
     "types": [
-      "hammerjs"
+      "hammerjs",
+      "jasmine"
     ],
     "lib": [
       "es2016",
       "dom"
+    ],
+    "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
     ]
   }
 }
