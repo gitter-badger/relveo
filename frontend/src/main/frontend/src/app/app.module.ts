@@ -18,6 +18,7 @@ import {
   ElectricityModalFormComponent
 } from "./electricity/electricity-modal/electricity-modal.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ElectricityService} from "./electricity/electricity.service";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MaterialModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ElectricityService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

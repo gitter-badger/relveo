@@ -1,2 +1,9 @@
 <button md-button (click)="openDialog()">Launch dialog</button>
-You chose: {{selectedOption}}
+<ol>
+  <li *ngFor="let electricity of electricityList">
+    <span>{{electricity.id}}</span>
+    <span>{{electricity.statementDate}}</span>
+    <span>{{electricity.dayIndex}}</span>
+    <span>{{electricity.nightIndex}}</span>
+  </li>
+</ol>

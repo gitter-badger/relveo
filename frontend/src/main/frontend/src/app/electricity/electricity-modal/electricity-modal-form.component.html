@@ -1,24 +1,26 @@
 <h1 md-dialog-title>Electricity Statement</h1>
 <div md-dialog-content>
-  <form action="electricityIndexStatements" method="post" #electrityForm="ngForm">
-    <md-input-container>
-      <input mdInput placeholder="id" value="" [(ngModel)]="model.id" name="id" #id="ngModel">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput placeholder="statementDate" type="date" value="" [(ngModel)]="model.statementDate"
-             name="statementDate" #statementDate="ngModel">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput placeholder="dayIndex" type="" value="" [(ngModel)]="model.dayIndex" name="dayIndex"
-             #dayIndex="ngModel">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput placeholder="nightIndex" type="" value="" [(ngModel)]="model.nightIndex" name="nightIndex"
-             #nightIndex="ngModel">
-    </md-input-container>
-  </form>
+  <div *ngIf="electricity">
+    <form #electrityForm="ngForm">
+      <md-input-container>
+        <input mdInput placeholder="id" value="" [(ngModel)]="electricity.id" name="id" #id="ngModel">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="statementDate" type="date" value="" [(ngModel)]="electricity.statementDate"
+               name="statementDate" #statementDate="ngModel">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="dayIndex" value="" [(ngModel)]="electricity.dayIndex" name="dayIndex"
+               #dayIndex="ngModel">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="nightIndex" value="" [(ngModel)]="electricity.nightIndex" name="nightIndex"
+               #nightIndex="ngModel">
+      </md-input-container>
+    </form>
+  </div>
 </div>
 <div md-dialog-actions>
-  <button md-button type="submit" (click)="dialogRef.close()">Submit</button>
+  <button md-button (click)="save()">Save</button>
 </div>
 

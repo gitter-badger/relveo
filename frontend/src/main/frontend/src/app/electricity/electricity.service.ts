@@ -6,7 +6,7 @@ import {Electricity} from "./electricity";
 @Injectable()
 export class ElectricityService {
   private headers = new Headers({'Content-type': 'application/json'});
-  private electricityUrl = 'electricityIndexStatements';
+  private electricityUrl = 'api/electricityIndexStatements';
 
   constructor(private http: Http) {
   }

@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {MdDialog, MdDialogRef} from "@angular/material";
 import {Electricity} from "../electricity";
+import {ElectricityService} from "../electricity.service";
 
 @Component({
   selector: 'app-electricity-modal',
@@ -8,7 +9,7 @@ import {Electricity} from "../electricity";
   styleUrls: ['./electricity-modal.component.css']
 })
 export class ElectricityModalComponent {
-  selectedOption: string;
+  electricityList: Electricity[];
 
   constructor(public dialog: MdDialog) {
   }
@@ -16,7 +17,7 @@ export class ElectricityModalComponent {
   openDialog() {
     let dialogRef = this.dialog.open(ElectricityModalFormComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedOption = result;
+      this.electricityList.push(result);
     });
   }
 
@@ -28,13 +29,16 @@ export class ElectricityModalComponent {
   templateUrl: './electricity-modal-form.component.html'
 })
 export class ElectricityModalFormComponent {
-  constructor(public dialogRef: MdDialogRef<ElectricityModalFormComponent>) {
+  //electricity: Electricity;
+  electricity = new Electricity();
+
+  constructor(public dialogRef: MdDialogRef<ElectricityModalFormComponent>,
+              private electricityService: ElectricityService) {
   }
 
-  model = new Electricity();
-  submitted = false;
 
-  onSubmit() {
-    this.submitted = true;
+  save(): void {
+    this.electricityService.save(this.electricity)
+      .then(result => this.dialogRef.close(result));
   }
 }
