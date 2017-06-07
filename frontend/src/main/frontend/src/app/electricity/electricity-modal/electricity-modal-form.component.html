@@ -1,7 +1,24 @@
-<h1 md-dialog-title>Dialog</h1>
-<div md-dialog-content>What would you like to do?</div>
+<h1 md-dialog-title>Electricity Statement</h1>
+<div md-dialog-content>
+  <form action="electricityIndexStatements" method="post" #electrityForm="ngForm">
+    <md-input-container>
+      <input mdInput placeholder="id" value="" [(ngModel)]="model.id" name="id" #id="ngModel">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="statementDate" type="date" value="" [(ngModel)]="model.statementDate"
+             name="statementDate" #statementDate="ngModel">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="dayIndex" type="" value="" [(ngModel)]="model.dayIndex" name="dayIndex"
+             #dayIndex="ngModel">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="nightIndex" type="" value="" [(ngModel)]="model.nightIndex" name="nightIndex"
+             #nightIndex="ngModel">
+    </md-input-container>
+  </form>
+</div>
 <div md-dialog-actions>
-  <button md-button (click)="dialogRef.close('Option 1')">Option 1</button>
-  <button md-button (click)="dialogRef.close('Option 2')">Option 2</button>
+  <button md-button type="submit" (click)="dialogRef.close()">Submit</button>
 </div>
 

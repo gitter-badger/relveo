@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {MdDialog, MdDialogRef} from "@angular/material";
+import {Electricity} from "../electricity";
 
 @Component({
   selector: 'app-electricity-modal',
@@ -28,5 +29,12 @@ export class ElectricityModalComponent {
 })
 export class ElectricityModalFormComponent {
   constructor(public dialogRef: MdDialogRef<ElectricityModalFormComponent>) {
+  }
+
+  model = new Electricity();
+  submitted = false;
+
+  onSubmit() {
+    this.submitted = true;
   }
 }
