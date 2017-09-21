@@ -24,14 +24,14 @@
     </properties>
 
     <dependencies>
-        <!--
-                <dependency>
-                    <groupId>com.andycostanza.relveo</groupId>
-                    <artifactId>relveo-frontend</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                    <scope>runtime</scope>
-                </dependency>
-                -->
+
+        <dependency>
+            <groupId>com.andycostanza.relveo</groupId>
+            <artifactId>relveo-frontend</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
