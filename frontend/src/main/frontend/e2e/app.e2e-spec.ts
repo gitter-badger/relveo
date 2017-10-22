@@ -1,14 +1,14 @@
-import {RelveoPage} from "./app.po";
+import {AppPage} from './app.po';
 
-describe('relveo App', () => {
-  let page: RelveoPage;
+describe('frontend App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new RelveoPage();
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Relveo works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });
