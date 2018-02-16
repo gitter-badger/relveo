@@ -1,25 +1,35 @@
-<div class="container" style="padding-left: 0; padding-right: 0;">
-  <header class="navbar navbar-light navbar-fixed-top navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">{{title}}</a>
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggler"
+          aria-controls="navbarToggler"
+          (click)="navbarCollapsed = !navbarCollapsed"
+          [attr.aria-expanded]="!navbarCollapsed"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <a class="navbar-brand">{{title}}</a>
+  <div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarToggler">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/electricity"><i class="fas fa-bolt"></i> Electricity</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/heating"><i class="fab fa-gripfire"></i> Heating</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/water"><i class="fas fa-tint"></i> Water</a>
+      </li>
+    </ul>
 
-    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed"
-            [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-</button>
-
-    <div class="navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" >
-          <a class="nav-link" >Getting Started</a>
-        </li>
-        <li class="nav-item" >
-          <a class="nav-link" >Components</a>
-        </li>
-        <li class="nav-item d-lg-none"  >
-          <a class="nav-link" >link</a>
-        </li>
-      </ul>
-    </div>
-  </header>
+  </div>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
 </div>
