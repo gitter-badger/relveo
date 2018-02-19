@@ -1,47 +1,45 @@
 <div class="row">
-  <div class="col-12 col-md-6">
-    <div class="row">
-      <div class="col-12">
-        Form
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        List
-        <table class="table table-striped">
-          <thead class="thead-dark">
-            <th></th>
-            <th scope="col">Date</th>
-            <th scope="col">kW/h</th>
-          </thead>
-          <tbody *ngFor="let val of multi">
-          <tr *ngFor="let s of val.series">
-            <th scope="row">{{val.name}}</th>
-            <td>{{s.name}}</td>
-            <td>{{s.value}}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-md-6">
-    <ngx-charts-line-chart
-      [view]="view"
-      [scheme]="colorScheme"
-      [results]="multi"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [legend]="showLegend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [autoScale]="autoScale"
-      (select)="onSelect($event)">
-    </ngx-charts-line-chart>
+  <div class="col-12">
+    <h4>Electricity statement index</h4>
+    <form class="form-inline">
+      <label class="sr-only" for="statementDate">Statement date</label>
+      <input type="date" #statementDate class="form-control mb-2 mr-sm-2" id="statementDate" placeholder="dd-mm-yyyy">
 
-  </div>
+      <label class="sr-only" for="dayIndex">Day index</label>
+      <input type="text" #dayIndex class="form-control mb-2 mr-sm-2" id="dayIndex" placeholder="Day Index">
 
+      <label class="sr-only" for="nightIndex">Night index</label>
+      <input type="text" #nightIndex class="form-control mb-2 mr-sm-2" id="nightIndex" placeholder="Night Index">
+      <button
+        (click)="add(statementDate.value, dayIndex.value, nightIndex.value); dayIndex.value='';nightIndex.value='';"
+        class="btn btn-primary mb-2">
+        <i class="fas fa-plus"></i> Add
+      </button>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <th scope="col">Statement date</th>
+      <th scope="col">Day index (kW/h)</th>
+      <th scope="col">Night index (kW/h)</th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let e of electricityList">
+        <td>{{e.statementDate}}</td>
+        <td>{{e.dayIndex}}</td>
+        <td>{{e.nightIndex}}</td>
+        <th>
+          <button class="btn btn-primary">
+            <i class="far fa-edit"></i></button>
+          <button class="btn btn-danger" (click)="delete(e)">
+            <i class="far fa-trash-alt"></i></button>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {multi} from './data';
+import {Component, OnInit} from '@angular/core';
+import {ElectricityService} from "./electricity.service";
+import {Electricity} from "./electricity";
+
 
 @Component({
   selector: 'app-electricity',
@@ -7,34 +9,32 @@ import {multi} from './data';
   styleUrls: ['./electricity.component.css']
 })
 export class ElectricityComponent implements OnInit {
-  multi: any[];
+  electricityList: Electricity[];
 
-  view: any[];// = [700, 700];
+  constructor(private electricityService: ElectricityService) {
 
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Electricity';
-  showYAxisLabel = true;
-  yAxisLabel = 'kW/h';
-
-  colorScheme = {
-    domain: ['#0000FF', '#000000']
-  };
-
-  // line, area
-  autoScale = true;
-  constructor() {
-    Object.assign(this, {multi})
   }
 
   ngOnInit() {
-  }
-  onSelect(event) {
-    console.log(event);
+    this.getAll();
   }
 
+
+  getAll() {
+    this.electricityService.getAll()
+      .subscribe(list => this.electricityList = list);
+  }
+
+  add(statementDate: Date, dayIndex: number, nightIndex: number): void {
+
+    this.electricityService.add({statementDate, dayIndex, nightIndex} as Electricity)
+      .subscribe(electricity => {
+        this.electricityList.push(electricity);
+      });
+  }
+
+  delete(electricity: Electricity): void {
+    this.electricityList = this.electricityList.filter(e => e !== electricity);
+    this.electricityService.delete(electricity).subscribe();
+  }
 }
