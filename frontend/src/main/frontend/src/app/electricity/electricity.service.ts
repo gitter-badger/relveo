@@ -12,17 +12,20 @@ const httpOptions = {
 
 @Injectable()
 export class ElectricityService {
-  private url = '/api/electricity';
+  private url = '/api/electricityIndexStatements';
 
   constructor(private http: HttpClient) {
   }
-
+  getChart() : Observable<any>{
+    return this.http.get<any>(this.url+'/chart')
+      .pipe(
+        catchError(this.handleError('getChart', []))
+      )
+      ;
+  }
   getAll(): Observable<Electricity[]> {
     return this.http.get<Electricity[]>(this.url)
       .pipe(
-          /*map((data: any) =>
-            data._embedded.electricityIndexStatements as Electricity[]
-          ),*/
         catchError(this.handleError('getAll', []))
       )
       ;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {multi} from './data';
+import {ElectricityService} from "../electricity/electricity.service";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -9,7 +9,7 @@ export class DashboardComponent implements OnInit {
 
   multi: any[];
 
-  view: any[] = [550, 700];
+  view: any[] = [550, 650];
 
   // options
   showXAxis = true;
@@ -27,13 +27,19 @@ export class DashboardComponent implements OnInit {
 
   // line, area
   autoScale = true;
-  constructor() {
-    Object.assign(this, {multi})
+  constructor(private electricityService: ElectricityService) {
+
   }
 
   ngOnInit() {
+    this.initElectricityChart();
   }
   onSelect(event) {
     console.log(event);
+  }
+
+  initElectricityChart() {
+    this.electricityService.getChart()
+      .subscribe(list => this.multi = list);
   }
 }

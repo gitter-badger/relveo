@@ -1,4 +1,4 @@
-package com.andycostanza.relveo;
+package com.andycostanza.relveo.water;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/electricity")
-@ExposesResourceFor(ElectricityIndexStatement.class)
-public class ElectricityIndexStatementController {
-    private final ElectricityIndexStatementRepository repository;
+@RequestMapping("/api/waterIndexStatements")
+@ExposesResourceFor(WaterIndexStatement.class)
+public class WaterIndexStatementController {
+    private final WaterIndexStatementRepository repository;
 
     @GetMapping
     public ResponseEntity findAll() {
@@ -25,15 +25,15 @@ public class ElectricityIndexStatementController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody ElectricityIndexStatement electricityIndexStatement) {
-        Assert.notNull(electricityIndexStatement, "The body could not be null or empty");
-        return ResponseEntity.ok(repository.save(electricityIndexStatement));
+    public ResponseEntity create(@RequestBody WaterIndexStatement waterIndexStatement) {
+        Assert.notNull(waterIndexStatement, "The body could not be null or empty");
+        return ResponseEntity.ok(repository.save(waterIndexStatement));
     }
 
     @PutMapping()
-    public ResponseEntity update(@RequestBody ElectricityIndexStatement electricityIndexStatement) {
-        Assert.notNull(electricityIndexStatement, "The body could not be null or empty");
-        return ResponseEntity.ok(repository.save(electricityIndexStatement));
+    public ResponseEntity update(@RequestBody WaterIndexStatement waterIndexStatement) {
+        Assert.notNull(waterIndexStatement, "The body could not be null or empty");
+        return ResponseEntity.ok(repository.save(waterIndexStatement));
     }
 
     @DeleteMapping("/{id}")
