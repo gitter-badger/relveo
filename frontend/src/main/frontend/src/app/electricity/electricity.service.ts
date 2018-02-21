@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Electricity} from "./electricity";
 import {Observable} from "rxjs/Observable";
 import {of} from 'rxjs/observable/of';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 
 
 const httpOptions = {
@@ -40,7 +40,7 @@ export class ElectricityService {
 
   //////// Save methods //////////
 
-  /** POST: add a new electricity to the server */
+  /** POST: add a new electricityForm to the server */
   add(electricity: Electricity): Observable<Electricity> {
     return this.http.post<Electricity>(this.url, electricity, httpOptions).pipe(
       catchError(this.handleError<Electricity>('add'))

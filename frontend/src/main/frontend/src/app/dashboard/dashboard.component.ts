@@ -7,7 +7,7 @@ import {ElectricityService} from "../electricity/electricity.service";
 })
 export class DashboardComponent implements OnInit {
 
-  multi: any[];
+  multi: any[] = [];
 
   view: any[] = [550, 650];
 

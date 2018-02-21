@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ElectricityService} from "./electricity.service";
-import {Electricity} from "./electricity";
+import {ElectricityService} from './electricity.service';
+import {Electricity} from './electricity';
 
 
 @Component({
@@ -10,6 +10,7 @@ import {Electricity} from "./electricity";
 })
 export class ElectricityComponent implements OnInit {
   electricityList: Electricity[];
+  model= new Electricity;
 
   constructor(private electricityService: ElectricityService) {
 
@@ -25,9 +26,9 @@ export class ElectricityComponent implements OnInit {
       .subscribe(list => this.electricityList = list);
   }
 
-  add(statementDate: Date, dayIndex: number, nightIndex: number): void {
-
-    this.electricityService.add({statementDate, dayIndex, nightIndex} as Electricity)
+  onSubmit() {
+    console.log("POST to backend : " + JSON.stringify(this.model));
+    this.electricityService.add(this.model)
       .subscribe(electricity => {
         this.electricityList.push(electricity);
       });

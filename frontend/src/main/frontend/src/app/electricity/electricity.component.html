@@ -1,18 +1,37 @@
-<div class="row">
+<div class="row mt-3">
   <div class="col-12">
     <h4>Electricity statement index</h4>
-    <form class="form-inline">
+    <form class="form-inline" (ngSubmit)="onSubmit()" #myForm="ngForm">
       <label class="sr-only" for="statementDate">Statement date</label>
-      <input type="date" #statementDate class="form-control mb-2 mr-sm-2" id="statementDate" placeholder="dd-mm-yyyy">
+      <input required
+             type="date"
+             [(ngModel)]="model.statementDate"
+             name="statementDate"
+             class="form-control mb-2 mr-sm-2"
+             id="statementDate"
+             placeholder="dd-mm-yyyy">
 
       <label class="sr-only" for="dayIndex">Day index</label>
-      <input type="text" #dayIndex class="form-control mb-2 mr-sm-2" id="dayIndex" placeholder="Day Index">
+      <input required
+             type="text"
+             [(ngModel)]="model.dayIndex"
+             name="dayIndex"
+             class="form-control mb-2 mr-sm-2"
+             id="dayIndex"
+             placeholder="Day Index">
 
       <label class="sr-only" for="nightIndex">Night index</label>
-      <input type="text" #nightIndex class="form-control mb-2 mr-sm-2" id="nightIndex" placeholder="Night Index">
+      <input required
+             type="text"
+             [(ngModel)]="model.nightIndex"
+             name="nightIndex"
+             class="form-control mb-2 mr-sm-2"
+             id="nightIndex"
+             placeholder="Night Index">
       <button
-        (click)="add(statementDate.value, dayIndex.value, nightIndex.value); dayIndex.value='';nightIndex.value='';"
-        class="btn btn-primary mb-2">
+        type="submit"
+        class="btn btn-primary mb-2"
+        [disabled]="!myForm.form.valid">
         <i class="fas fa-plus"></i> Add
       </button>
     </form>
@@ -29,12 +48,14 @@
       </thead>
       <tbody>
       <tr *ngFor="let e of electricityList">
-        <td>{{e.statementDate}}</td>
+        <td>{{e.statementDate| date: 'dd/MM/yyyy'}}</td>
         <td>{{e.dayIndex}}</td>
         <td>{{e.nightIndex}}</td>
         <th>
-          <button class="btn btn-primary">
-            <i class="far fa-edit"></i></button>
+          <a class="btn btn-primary"
+             routerLink="/electricity/{{e.id}}"
+          >
+            <i class="far fa-edit"></i></a>
           <button class="btn btn-danger" (click)="delete(e)">
             <i class="far fa-trash-alt"></i></button>
         </th>
