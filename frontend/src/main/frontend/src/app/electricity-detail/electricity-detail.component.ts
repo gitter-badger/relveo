@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import {Electricity} from '../electricity/electricity';
-import {ElectricityService} from '../electricity/electricity.service';
+import {Electricity} from '../model/electricity';
+import {ElectricityService} from '../service/electricity.service';
 
 @Component({
   selector: 'app-electricity-detail',

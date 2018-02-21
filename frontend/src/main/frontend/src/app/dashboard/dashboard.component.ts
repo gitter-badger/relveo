@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ElectricityService} from "../electricity/electricity.service";
+import {ElectricityService} from "../service/electricity.service";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

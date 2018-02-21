@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ElectricityService} from './electricity.service';
-import {Electricity} from './electricity';
+import {ElectricityService} from '../service/electricity.service';
+import {Electricity} from '../model/electricity';
 
 
 @Component({

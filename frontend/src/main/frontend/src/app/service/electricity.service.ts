@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Electricity} from "./electricity";
+import {Electricity} from "../model/electricity";
 import {Observable} from "rxjs/Observable";
 import {of} from 'rxjs/observable/of';
 import {catchError} from 'rxjs/operators';

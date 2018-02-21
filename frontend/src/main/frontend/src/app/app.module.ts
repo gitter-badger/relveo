@@ -10,7 +10,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ElectricityService } from './electricity/electricity.service';
+import { ElectricityService } from './service/electricity.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { ElectricityDetailComponent } from './electricity-detail/electricity-detail.component';
