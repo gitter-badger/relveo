@@ -1,0 +1,57 @@
+<div class="row mt-3">
+  <div class="col-12">
+    <h4>Edit electricity statement index ID {{electricity.id}}</h4>
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+      <input type="hidden"
+             [(ngModel)]="electricity.id"
+             name="electricity.id"
+             id="recordId"
+      >
+
+
+      <div class="form-group">
+        <label for="statementDate">Statement date</label>
+
+        <input required
+               type="date"
+               [(ngModel)]="electricity.statementDate"
+               name="electricity.statementDate"
+               class="form-control mb-2 mr-sm-2"
+               id="statementDate"
+               placeholder="dd/mm/yyyy">
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="dayIndex">Day index</label>
+        <input required
+               type="text"
+               [(ngModel)]="electricity.dayIndex"
+               name="electricity.dayIndex"
+               class="form-control mb-2 mr-sm-2"
+               id="dayIndex"
+               placeholder="Day Index">
+      </div>
+      <div class="form-group">
+        <label for="nightIndex">Night index</label>
+        <input required
+               type="text"
+               [(ngModel)]="electricity.nightIndex"
+               name="electricity.nightIndex"
+               class="form-control mb-2 mr-sm-2"
+               id="nightIndex"
+               placeholder="Night Index">
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!myForm.form.valid">
+        <i class="fas fa-save"></i> Save
+      </button>
+    </form>
+
+
+  </div>
+</div>
