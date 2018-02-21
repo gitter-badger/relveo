@@ -1,31 +1,35 @@
-<md-toolbar>
-  <span>{{title}}</span>
-</md-toolbar>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">{{title}}</a>
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggler"
+          aria-controls="navbarToggler"
+          (click)="navbarCollapsed = !navbarCollapsed"
+          [attr.aria-expanded]="!navbarCollapsed"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<nav md-tab-nav-bar>
-  <a md-tab-link
-     routerLink="/dashboard"
-  >
-    <md-icon>dashboard</md-icon>
-    Dashboard
-  </a>
-  <a md-tab-link
-     routerLink="/electricity">
+  <div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarToggler">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/electricity"><i class="fas fa-bolt"></i> Electricity</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/heating"><i class="fab fa-gripfire"></i> Heating</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/water"><i class="fas fa-tint"></i> Water</a>
+      </li>
+    </ul>
 
-    <md-icon>flash_on</md-icon>
-    Electricity
-  </a>
-  <a md-tab-link
-     routerLink="/heating">
-
-    <md-icon>whatshot</md-icon>
-    Heating
-  </a>
-  <a md-tab-link
-     routerLink="/water">
-    <md-icon>opacity</md-icon>
-    Water
-  </a>
+  </div>
 </nav>
-<router-outlet></router-outlet>
-
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

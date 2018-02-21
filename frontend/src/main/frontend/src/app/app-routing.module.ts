@@ -1,22 +1,20 @@
-import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
-
-import {MainDashboardComponent} from "./dashboard/main-dashboard/main-dashboard.component";
-import {ElectricityIndexesListComponent} from "./electricity/electricity-indexes-list/electricity-indexes-list.component";
-import {HeatingIndexesListComponent} from "./heating/heating-indexes-list/heating-indexes-list.component";
-import {WaterIndexesListComponent} from "./water/water-indexes-list/water-indexes-list.component";
-
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import {ElectricityComponent} from "./electricity/electricity.component";
+import {HeatingComponent} from "./heating/heating.component";
+import {WaterComponent} from "./water/water.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {ElectricityDetailComponent} from "./electricity-detail/electricity-detail.component";
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'dashboard', component: MainDashboardComponent},
-  {path: 'electricity', component: ElectricityIndexesListComponent},
-  {path: 'heating', component: HeatingIndexesListComponent},
-  {path: 'water', component: WaterIndexesListComponent}
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'electricity', component: ElectricityComponent },
+  { path: 'electricity/:id', component: ElectricityDetailComponent },
+  { path: 'heating', component: HeatingComponent },
+  { path: 'water', component: WaterComponent }
 ];
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

@@ -1,0 +1,94 @@
+
+<div class="row mt-3">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+    <div class="card text-center">
+      <div class="card-header">
+        Electricity
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <ngx-charts-line-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="multi"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [autoScale]="autoScale"
+            (select)="onSelect($event)">
+          </ngx-charts-line-chart>
+        </p>
+
+      </div>
+      <div class="card-footer">
+        <a routerLink="/electricity" class="btn btn-primary">Go to index statement</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+    <div class="card text-center">
+      <div class="card-header">
+        Heating
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <ngx-charts-line-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="multi"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [autoScale]="autoScale"
+            (select)="onSelect($event)">
+          </ngx-charts-line-chart>
+
+        </p>
+
+      </div>
+      <div class="card-footer">
+        <a routerLink="/heating" class="btn btn-primary">Go to index statement</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+    <div class="card text-center">
+      <div class="card-header">
+        Water
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <ngx-charts-line-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="multi"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [autoScale]="autoScale"
+            (select)="onSelect($event)">
+          </ngx-charts-line-chart>
+
+        </p>
+      </div>
+      <div class="card-footer">
+        <a routerLink="/water" class="btn btn-primary">Go to index statement</a>
+      </div>
+    </div>
+  </div>
+</div>

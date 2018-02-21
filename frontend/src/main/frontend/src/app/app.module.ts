@@ -1,49 +1,40 @@
-import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import {MaterialModule} from "@angular/material";
-import "hammerjs";
-import {AppComponent} from "./app.component";
-import {ElectricityIndexesListComponent} from "./electricity/electricity-indexes-list/electricity-indexes-list.component";
-import {HeatingIndexesListComponent} from "./heating/heating-indexes-list/heating-indexes-list.component";
-import {WaterIndexesListComponent} from "./water/water-indexes-list/water-indexes-list.component";
-import {MainDashboardComponent} from "./dashboard/main-dashboard/main-dashboard.component";
+import {AppComponent} from './app.component';
+import {ElectricityComponent} from './electricity/electricity.component';
+import {HeatingComponent} from './heating/heating.component';
+import {WaterComponent} from './water/water.component';
+import {AppRoutingModule} from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ElectricityService } from './service/electricity.service';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import { ElectricityDetailComponent } from './electricity-detail/electricity-detail.component';
 
-import {AppRoutingModule} from "./app-routing.module";
-
-import {
-  ElectricityModalComponent,
-  ElectricityModalFormComponent
-} from "./electricity/electricity-modal/electricity-modal.component";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ElectricityService} from "./electricity/electricity.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ElectricityIndexesListComponent,
-    HeatingIndexesListComponent,
-    WaterIndexesListComponent,
-    MainDashboardComponent,
-    ElectricityModalComponent,
-    ElectricityModalFormComponent
-  ],
-  entryComponents: [
-    ElectricityModalFormComponent
+    ElectricityComponent,
+    HeatingComponent,
+    WaterComponent,
+    DashboardComponent,
+    ElectricityDetailComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgxChartsModule
   ],
   providers: [ElectricityService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
