@@ -1,5 +1,11 @@
-import static org.junit.Assert.*;
+package com.andycostanza.relveo.heating;
 
-public class HeatingIndexStatementTest {
+import com.andycostanza.relveo.AbstractJavaBeanTest;
 
+public class HeatingIndexStatementTest extends AbstractJavaBeanTest<HeatingIndexStatement>{
+
+    @Override
+    protected HeatingIndexStatement getBeanInstance() {
+        return new HeatingIndexStatement();
+    }
 }

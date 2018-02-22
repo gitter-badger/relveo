@@ -1,4 +1,4 @@
-package com.andycostanza.relveo;
+package com.andycostanza.relveo.chart;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

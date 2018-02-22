@@ -1,5 +1,11 @@
-import static org.junit.Assert.*;
+package com.andycostanza.relveo.water;
 
-public class WaterIndexStatementTest {
+import com.andycostanza.relveo.AbstractJavaBeanTest;
 
+public class WaterIndexStatementTest extends AbstractJavaBeanTest<WaterIndexStatement>{
+
+    @Override
+    protected WaterIndexStatement getBeanInstance() {
+        return new WaterIndexStatement();
+    }
 }

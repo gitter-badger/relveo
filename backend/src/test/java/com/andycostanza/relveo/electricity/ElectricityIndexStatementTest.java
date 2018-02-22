@@ -1,5 +1,11 @@
-import static org.junit.Assert.*;
+package com.andycostanza.relveo.electricity;
 
-public class ElectricityIndexStatementTest {
+import com.andycostanza.relveo.AbstractJavaBeanTest;
 
+public class ElectricityIndexStatementTest extends AbstractJavaBeanTest<ElectricityIndexStatement>{
+
+    @Override
+    protected ElectricityIndexStatement getBeanInstance() {
+        return new ElectricityIndexStatement();
+    }
 }

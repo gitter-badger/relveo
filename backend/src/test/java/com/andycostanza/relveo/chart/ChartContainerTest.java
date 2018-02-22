@@ -1,6 +1,9 @@
-package com.andycostanza.relveo;
+package com.andycostanza.relveo.chart;
 
-public class ChartContainerTest extends AbstractJavaBeanTest<ChartContainer>{
+import com.andycostanza.relveo.AbstractJavaBeanTest;
+import com.andycostanza.relveo.chart.ChartContainer;
+
+public class ChartContainerTest extends AbstractJavaBeanTest<ChartContainer> {
 
     @Override
     protected ChartContainer getBeanInstance() {
