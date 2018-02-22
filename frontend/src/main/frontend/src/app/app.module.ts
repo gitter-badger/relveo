@@ -14,6 +14,9 @@ import { ElectricityService } from './service/electricity.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { ElectricityDetailComponent } from './electricity-detail/electricity-detail.component';
+import { ElectricityChartComponent } from './electricity-chart/electricity-chart.component';
+import { WaterChartComponent } from './water-chart/water-chart.component';
+import { HeatingChartComponent } from './heating-chart/heating-chart.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { ElectricityDetailComponent } from './electricity-detail/electricity-det
     HeatingComponent,
     WaterComponent,
     DashboardComponent,
-    ElectricityDetailComponent
+    ElectricityDetailComponent,
+    ElectricityChartComponent,
+    WaterChartComponent,
+    HeatingChartComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -1,12 +1,13 @@
 package com.andycostanza.relveo.water;
 
-import com.andycostanza.relveo.AbstractIndexStatement;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by andy on 24/03/17.
@@ -16,7 +17,11 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class WaterIndexStatement extends AbstractIndexStatement {
-
+public class WaterIndexStatement implements Serializable {
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Temporal(TemporalType.DATE)
+    private Date statementDate;
     private Long waterIndex;
 }

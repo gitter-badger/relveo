@@ -1,7 +1,8 @@
 package com.andycostanza.relveo.electricity;
 
-import com.andycostanza.relveo.ChartContainer;
-import com.andycostanza.relveo.ChartValue;
+import com.andycostanza.relveo.chart.ChartContainer;
+import com.andycostanza.relveo.chart.ChartValue;
+import com.andycostanza.relveo.chart.service.ChartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -19,6 +20,7 @@ import java.util.List;
 @ExposesResourceFor(ElectricityIndexStatement.class)
 public class ElectricityIndexStatementController {
     private final ElectricityIndexStatementRepository repository;
+    private final ChartService chartService;
 
     @GetMapping
     public ResponseEntity findAll() {
@@ -26,18 +28,7 @@ public class ElectricityIndexStatementController {
     }
     @GetMapping("/chart")
     public ResponseEntity buildChart(){
-        List<ElectricityIndexStatement> list = repository.findAll(new Sort("statementDate"));
-        ChartContainer nightIndex = ChartContainer.builder().name("Night index").build();
-        nightIndex.setSeries(new ArrayList<>());
-        ChartContainer dayIndex = ChartContainer.builder().name("Day index").build();
-        dayIndex.setSeries(new ArrayList<>());
-        for (ElectricityIndexStatement e: list) {
-            ChartValue night = ChartValue.builder().name(e.getStatementDate().toString()).value(e.getNightIndex()).build();
-            ChartValue day = ChartValue.builder().name(e.getStatementDate().toString()).value(e.getDayIndex()).build();
-            nightIndex.getSeries().add(night);
-            dayIndex.getSeries().add(day);
-        }
-        return ResponseEntity.ok(Arrays.asList(dayIndex,nightIndex));
+        return ResponseEntity.ok(chartService.electricityConsumptionCalculator(repository.findAll(new Sort("statementDate"))));
     }
 
     @GetMapping("/{id}")
