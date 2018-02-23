@@ -17,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ElectricityIndexStatement implements Serializable {
+public class ElectricityIndexStatement implements Serializable,Comparable<ElectricityIndexStatement> {
     @Id
     @GeneratedValue
     private Long id;
@@ -27,4 +27,8 @@ public class ElectricityIndexStatement implements Serializable {
     private Long nightIndex;
 
 
+    @Override
+    public int compareTo(ElectricityIndexStatement e) {
+        return getStatementDate().compareTo(e.getStatementDate());
+    }
 }

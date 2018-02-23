@@ -5,9 +5,11 @@ import com.andycostanza.relveo.chart.ChartValue;
 import com.andycostanza.relveo.electricity.ElectricityIndexStatement;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 @Service
 @Slf4j
@@ -17,7 +19,10 @@ public class ChartServiceImpl implements ChartService {
         List<ChartContainer> chartContainers = new ArrayList<>();
         List<ChartValue> dayConsumptionChartValue = new ArrayList<>();
         List<ChartValue> nightConsumptionChartValue = new ArrayList<>();
-        if(CollectionUtils.isNotEmpty(indexStatements) && indexStatements.size()>1) {
+        if(indexStatements!=null
+                && CollectionUtils.isNotEmpty(indexStatements)
+                && indexStatements.size()>1) {
+            Collections.sort(indexStatements);
             for (int i = 1; i < indexStatements.size(); i++) {
                 ElectricityIndexStatement indexStatement = indexStatements.get(i);
                 ElectricityIndexStatement previousIndexStatement = indexStatements.get(i - 1);

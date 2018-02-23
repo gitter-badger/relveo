@@ -1,18 +1,13 @@
 package com.andycostanza.relveo.electricity;
 
-import com.andycostanza.relveo.chart.ChartContainer;
-import com.andycostanza.relveo.chart.ChartValue;
 import com.andycostanza.relveo.chart.service.ChartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,13 +17,18 @@ public class ElectricityIndexStatementController {
     private final ElectricityIndexStatementRepository repository;
     private final ChartService chartService;
 
+
     @GetMapping
-    public ResponseEntity findAll() {
-        return ResponseEntity.ok(repository.findAll(new Sort(Sort.Direction.DESC, "statementDate")));
+    public ResponseEntity findAllPaginate(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return ResponseEntity.ok(repository.findAll(new PageRequest(page,
+                size,
+                new Sort(Sort.Direction.DESC, "statementDate"))));
     }
+
     @GetMapping("/chart")
-    public ResponseEntity buildChart(){
-        return ResponseEntity.ok(chartService.electricityConsumptionCalculator(repository.findAll(new Sort("statementDate"))));
+    public ResponseEntity buildChart() {
+        return ResponseEntity.ok(chartService.electricityConsumptionCalculator(
+                repository.findTop53ByOrderByStatementDateDesc()));
     }
 
     @GetMapping("/{id}")

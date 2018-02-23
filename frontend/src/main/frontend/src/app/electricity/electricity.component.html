@@ -53,7 +53,7 @@
             <td>{{e.statementDate| date: 'dd/MM/yyyy'}}</td>
             <td>{{e.dayIndex}}</td>
             <td>{{e.nightIndex}}</td>
-            <th>
+            <th class="text-right">
               <a class="btn btn-primary"
                  routerLink="/electricity/{{e.id}}"
               >
@@ -64,10 +64,13 @@
           </tr>
           </tbody>
         </table>
+        <div class="col-12 justify-content-center">
+        <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="7" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-3" >
-    <app-electricity-chart></app-electricity-chart>
+    <app-electricity-chart [multi]="multi"></app-electricity-chart>
   </div>
 </div>

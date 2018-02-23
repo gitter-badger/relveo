@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ElectricityService} from "../service/electricity.service";
+
 @Component({
   selector: 'app-electricity-chart',
   templateUrl: './electricity-chart.component.html',
   styleUrls: ['./electricity-chart.component.css']
 })
 export class ElectricityChartComponent implements OnInit {
-
+  @Input()
   multi: any[] = [];
 
   // options

@@ -6,6 +6,8 @@ import com.andycostanza.relveo.electricity.ElectricityIndexStatement;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class ChartServiceImplTest {
         List<ChartValue> nightConsumption = new ArrayList<>();
         nightConsumption.add(ChartValue.builder().name(java.sql.Date.valueOf(LocalDate.of(2018,1,2)).toString()).value(3L).build());
         nightConsumption.add(ChartValue.builder().name(java.sql.Date.valueOf(LocalDate.of(2018,1,3)).toString()).value(4L).build());
+        PageImpl page = new PageImpl(list);
         //when
         List<ChartContainer> result = service.electricityConsumptionCalculator(list);
         //then
@@ -43,6 +46,7 @@ public class ChartServiceImplTest {
         //given
         List<ElectricityIndexStatement> list = new ArrayList<>();
         list.add(ElectricityIndexStatement.builder().id(1L).statementDate(java.sql.Date.valueOf(LocalDate.of(2018,1,1))).dayIndex(1L).nightIndex(1L).build());
+        PageImpl page = new PageImpl(list);
         //when
         List<ChartContainer> result = service.electricityConsumptionCalculator(list);
         //then

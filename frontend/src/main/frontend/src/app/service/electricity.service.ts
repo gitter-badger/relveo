@@ -4,6 +4,7 @@ import {Electricity} from "../model/electricity";
 import {Observable} from "rxjs/Observable";
 import {of} from 'rxjs/observable/of';
 import {catchError} from 'rxjs/operators';
+import {Page} from "../model/page";
 
 
 const httpOptions = {
@@ -23,10 +24,10 @@ export class ElectricityService {
       )
       ;
   }
-  getAll(): Observable<Electricity[]> {
-    return this.http.get<Electricity[]>(this.url)
+  getAllPaginate(page: number, size:number): Observable<Page> {
+    return this.http.get<Page>(this.url+'?size='+size+'&page='+page)
       .pipe(
-        catchError(this.handleError('getAll', []))
+        catchError(this.handleError<Page>('getAllPaginate'))
       )
       ;
   }
