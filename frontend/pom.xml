@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.andycostanza.relveo</groupId>
         <artifactId>relveo</artifactId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.1.0</version>
     </parent>
 
     <build>

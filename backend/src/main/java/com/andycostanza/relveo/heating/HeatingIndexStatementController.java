@@ -1,6 +1,8 @@
 package com.andycostanza.relveo.heating;
 
+import com.andycostanza.relveo.chart.service.ChartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +15,20 @@ import org.springframework.web.bind.annotation.*;
 @ExposesResourceFor(HeatingIndexStatement.class)
 public class HeatingIndexStatementController {
     private final HeatingIndexStatementRepository repository;
+    private final ChartService chartService;
+
 
     @GetMapping
-    public ResponseEntity findAll() {
-        return ResponseEntity.ok(repository.findAll(new Sort(Sort.Direction.DESC, "statementDate")));
+    public ResponseEntity findAllPaginate(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return ResponseEntity.ok(repository.findAll(new PageRequest(page,
+                size,
+                new Sort(Sort.Direction.DESC, "statementDate"))));
+    }
+
+    @GetMapping("/chart")
+    public ResponseEntity buildChart() {
+        return ResponseEntity.ok(chartService.heatingConsumptionCalculator(
+                repository.findTop53ByOrderByStatementDateDesc()));
     }
 
     @GetMapping("/{id}")

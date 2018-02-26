@@ -18,11 +18,16 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class WaterIndexStatement implements Serializable {
+public class WaterIndexStatement implements Serializable,Comparable<WaterIndexStatement> {
     @Id
     @GeneratedValue
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date statementDate;
     private BigDecimal waterIndex;
+
+    @Override
+    public int compareTo(WaterIndexStatement w) {
+        return getStatementDate().compareTo(w.getStatementDate());
+    }
 }

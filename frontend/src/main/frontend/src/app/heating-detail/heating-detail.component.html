@@ -1,0 +1,48 @@
+<div class="row mt-3">
+  <div class="col-12">
+    <h4>Edit heating statement index ID {{heating.id}}</h4>
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+      <input type="hidden"
+             [(ngModel)]="heating.id"
+             name="heating.id"
+             id="recordId"
+      >
+
+
+      <div class="form-group">
+        <label for="statementDate">Statement date</label>
+
+        <input required
+               type="date"
+               [(ngModel)]="heating.statementDate"
+               name="heating.statementDate"
+               class="form-control mb-2 mr-sm-2"
+               id="statementDate"
+               placeholder="dd/mm/yyyy">
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="heightOfTank">Height Of Tank (cm)</label>
+        <input required
+               type="text"
+               [(ngModel)]="heating.heightOfTank"
+               name="heating.heightOfTank"
+               class="form-control mb-2 mr-sm-2"
+               id="heightOfTank"
+               placeholder="height Of Tank">
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!myForm.form.valid">
+        <i class="fas fa-save"></i> Save
+      </button>
+    </form>
+
+
+  </div>
+</div>

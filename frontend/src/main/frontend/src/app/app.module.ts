@@ -17,6 +17,10 @@ import { ElectricityDetailComponent } from './electricity-detail/electricity-det
 import { ElectricityChartComponent } from './electricity-chart/electricity-chart.component';
 import { WaterChartComponent } from './water-chart/water-chart.component';
 import { HeatingChartComponent } from './heating-chart/heating-chart.component';
+import { WaterDetailComponent } from './water-detail/water-detail.component';
+import { HeatingDetailComponent } from './heating-detail/heating-detail.component';
+import { WaterService } from './service/water.service';
+import { HeatingService } from './service/heating.service';
 
 
 @NgModule({
@@ -29,7 +33,9 @@ import { HeatingChartComponent } from './heating-chart/heating-chart.component';
     ElectricityDetailComponent,
     ElectricityChartComponent,
     WaterChartComponent,
-    HeatingChartComponent
+    HeatingChartComponent,
+    WaterDetailComponent,
+    HeatingDetailComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -40,7 +46,7 @@ import { HeatingChartComponent } from './heating-chart/heating-chart.component';
     HttpClientModule,
     NgxChartsModule
   ],
-  providers: [ElectricityService],
+  providers: [ElectricityService, WaterService, HeatingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

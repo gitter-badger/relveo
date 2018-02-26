@@ -1,3 +1,65 @@
-<p>
-  water works!
-</p>
+<div class="row mt-3">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-3">
+    <div class="row">
+      <div class="col-12">
+        <h4>Heating statement index</h4>
+        <form class="form-inline" (ngSubmit)="onSubmit()" #myForm="ngForm">
+          <label class="sr-only" for="statementDate">Statement date</label>
+          <input required
+                 type="date"
+                 [(ngModel)]="model.statementDate"
+                 name="statementDate"
+                 class="form-control mb-2 mr-sm-2"
+                 id="statementDate"
+                 placeholder="dd-mm-yyyy">
+
+          <label class="sr-only" for="waterIndex">Water statement index</label>
+          <input required
+                 type="text"
+                 [(ngModel)]="model.waterIndex"
+                 name="waterIndex"
+                 class="form-control mb-2 mr-sm-2"
+                 id="waterIndex"
+                 placeholder="Water statement index">
+          <button
+            type="submit"
+            class="btn btn-primary mb-2"
+            [disabled]="!myForm.form.valid">
+            <i class="fas fa-plus"></i> Add
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+          <th scope="col">Statement date</th>
+          <th scope="col">Water statement index (m³)</th>
+          <th></th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let e of waterList">
+            <td>{{e.statementDate| date: 'dd/MM/yyyy'}}</td>
+            <td>{{e.waterIndex}}</td>
+            <th class="text-right">
+              <a class="btn btn-primary"
+                 routerLink="/water/{{e.id}}"
+              >
+                <i class="far fa-edit"></i></a>
+              <button class="btn btn-danger" (click)="delete(e)">
+                <i class="far fa-trash-alt"></i></button>
+            </th>
+          </tr>
+          </tbody>
+        </table>
+        <div class="col-12 justify-content-center mb-5">
+          <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="7" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-5" >
+    <app-water-chart [multi]="multi"></app-water-chart>
+  </div>
+</div>

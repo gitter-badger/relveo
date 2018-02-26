@@ -3,6 +3,8 @@ package com.andycostanza.relveo.chart.service;
 import com.andycostanza.relveo.chart.ChartContainer;
 import com.andycostanza.relveo.chart.ChartValue;
 import com.andycostanza.relveo.electricity.ElectricityIndexStatement;
+import com.andycostanza.relveo.heating.HeatingIndexStatement;
+import com.andycostanza.relveo.water.WaterIndexStatement;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.domain.Page;
@@ -32,14 +34,14 @@ public class ChartServiceImpl implements ChartService {
                         .toString() + " is " + dayConsumption);
                 dayConsumptionChartValue.add(ChartValue.builder()
                         .name(indexStatement.getStatementDate().toString())
-                        .value(indexStatement.getDayIndex().subtract(previousIndexStatement.getDayIndex()))
+                        .value(dayConsumption)
                         .build());
                 BigDecimal nightConsumption = indexStatement.getNightIndex().subtract(previousIndexStatement.getNightIndex());
                 log.debug("Night Consumption of " + indexStatement.getStatementDate()
                         .toString() + " is " + nightConsumption);
                 nightConsumptionChartValue.add(ChartValue.builder()
                         .name(indexStatement.getStatementDate().toString())
-                        .value(indexStatement.getNightIndex().subtract(previousIndexStatement.getNightIndex()))
+                        .value(nightConsumption)
                         .build());
             }
             chartContainers.add(ChartContainer.builder()
@@ -53,4 +55,60 @@ public class ChartServiceImpl implements ChartService {
         }
         return chartContainers;
     }
+
+    @Override
+    public List<ChartContainer> heatingConsumptionCalculator(List<HeatingIndexStatement> indexStatements) {
+        List<ChartContainer> chartContainers = new ArrayList<>();
+        List<ChartValue> consumptionChartValue = new ArrayList<>();
+        if(indexStatements!=null
+                && CollectionUtils.isNotEmpty(indexStatements)
+                && indexStatements.size()>1) {
+            Collections.sort(indexStatements);
+            for (int i = 1; i < indexStatements.size(); i++) {
+                HeatingIndexStatement indexStatement = indexStatements.get(i);
+                HeatingIndexStatement previousIndexStatement = indexStatements.get(i - 1);
+                BigDecimal consumption = (indexStatement.getHeightOfTank().subtract(previousIndexStatement.getHeightOfTank())).multiply(BigDecimal.valueOf(-30));
+                log.debug("Heating Consumption of " + indexStatement.getStatementDate()
+                        .toString() + " is " + consumption);
+                consumptionChartValue.add(ChartValue.builder()
+                        .name(indexStatement.getStatementDate().toString())
+                        .value(consumption)
+                        .build());
+            }
+            chartContainers.add(ChartContainer.builder()
+                    .name("Heating consumption")
+                    .series(consumptionChartValue)
+                    .build());
+        }
+        return chartContainers;
+    }
+
+    @Override
+    public List<ChartContainer> waterConsumptionCalculator(List<WaterIndexStatement> indexStatements) {
+        List<ChartContainer> chartContainers = new ArrayList<>();
+        List<ChartValue> consumptionChartValue = new ArrayList<>();
+        if(indexStatements!=null
+                && CollectionUtils.isNotEmpty(indexStatements)
+                && indexStatements.size()>1) {
+            Collections.sort(indexStatements);
+            for (int i = 1; i < indexStatements.size(); i++) {
+                WaterIndexStatement indexStatement = indexStatements.get(i);
+                WaterIndexStatement previousIndexStatement = indexStatements.get(i - 1);
+                BigDecimal consumption = indexStatement.getWaterIndex().subtract(previousIndexStatement.getWaterIndex());
+                log.debug("Water Consumption of " + indexStatement.getStatementDate()
+                        .toString() + " is " + consumption);
+                consumptionChartValue.add(ChartValue.builder()
+                        .name(indexStatement.getStatementDate().toString())
+                        .value(consumption)
+                        .build());
+            }
+            chartContainers.add(ChartContainer.builder()
+                    .name("Water consumption")
+                    .series(consumptionChartValue)
+                    .build());
+        }
+        return chartContainers;
+    }
+
+
 }

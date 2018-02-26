@@ -16,12 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-
-export class Electricity{
+export class Water{
   id?: number;
   statementDate: Date;
-  dayIndex: number;
-  nightIndex: number;
+  waterIndex: number;
   _links?: {
     self: {
       href: string
