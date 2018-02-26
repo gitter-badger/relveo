@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,19 +27,19 @@ public class ChartServiceImpl implements ChartService {
             for (int i = 1; i < indexStatements.size(); i++) {
                 ElectricityIndexStatement indexStatement = indexStatements.get(i);
                 ElectricityIndexStatement previousIndexStatement = indexStatements.get(i - 1);
-                long dayConsumption = indexStatement.getDayIndex() - previousIndexStatement.getDayIndex();
+                BigDecimal dayConsumption = indexStatement.getDayIndex().subtract(previousIndexStatement.getDayIndex());
                 log.debug("Day Consumption of " + indexStatement.getStatementDate()
                         .toString() + " is " + dayConsumption);
                 dayConsumptionChartValue.add(ChartValue.builder()
                         .name(indexStatement.getStatementDate().toString())
-                        .value(indexStatement.getDayIndex() - previousIndexStatement.getDayIndex())
+                        .value(indexStatement.getDayIndex().subtract(previousIndexStatement.getDayIndex()))
                         .build());
-                long nightConsumption = indexStatement.getNightIndex() - previousIndexStatement.getNightIndex();
+                BigDecimal nightConsumption = indexStatement.getNightIndex().subtract(previousIndexStatement.getNightIndex());
                 log.debug("Night Consumption of " + indexStatement.getStatementDate()
                         .toString() + " is " + nightConsumption);
                 nightConsumptionChartValue.add(ChartValue.builder()
                         .name(indexStatement.getStatementDate().toString())
-                        .value(indexStatement.getNightIndex() - previousIndexStatement.getNightIndex())
+                        .value(indexStatement.getNightIndex().subtract(previousIndexStatement.getNightIndex()))
                         .build());
             }
             chartContainers.add(ChartContainer.builder()

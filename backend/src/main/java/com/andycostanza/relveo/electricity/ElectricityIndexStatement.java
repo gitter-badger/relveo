@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -23,8 +24,8 @@ public class ElectricityIndexStatement implements Serializable,Comparable<Electr
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date statementDate;
-    private Long dayIndex;
-    private Long nightIndex;
+    private BigDecimal dayIndex;
+    private BigDecimal nightIndex;
 
 
     @Override

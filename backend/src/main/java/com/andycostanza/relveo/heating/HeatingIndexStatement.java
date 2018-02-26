@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -23,5 +24,5 @@ public class HeatingIndexStatement implements Serializable {
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date statementDate;
-    private Integer heightOfTank;
+    private BigDecimal heightOfTank;
 }

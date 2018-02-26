@@ -64,13 +64,13 @@
           </tr>
           </tbody>
         </table>
-        <div class="col-12 justify-content-center">
+        <div class="col-12 justify-content-center mb-5">
         <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="7" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-3" >
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-5" >
     <app-electricity-chart [multi]="multi"></app-electricity-chart>
   </div>
 </div>
