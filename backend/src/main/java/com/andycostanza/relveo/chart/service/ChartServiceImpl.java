@@ -22,6 +22,7 @@ public class ChartServiceImpl implements ChartService {
         List<ChartContainer> chartContainers = new ArrayList<>();
         List<ChartValue> dayConsumptionChartValue = new ArrayList<>();
         List<ChartValue> nightConsumptionChartValue = new ArrayList<>();
+        List<ChartValue> totalConsumptionChartValue = new ArrayList<>();
         if(indexStatements!=null
                 && CollectionUtils.isNotEmpty(indexStatements)
                 && indexStatements.size()>1) {
@@ -43,6 +44,10 @@ public class ChartServiceImpl implements ChartService {
                         .name(indexStatement.getStatementDate().toString())
                         .value(nightConsumption)
                         .build());
+                totalConsumptionChartValue.add(ChartValue.builder()
+                        .name(indexStatement.getStatementDate().toString())
+                        .value(dayConsumption.add(nightConsumption))
+                        .build());
             }
             chartContainers.add(ChartContainer.builder()
                     .name("Day Consumption")
@@ -51,6 +56,10 @@ public class ChartServiceImpl implements ChartService {
             chartContainers.add(ChartContainer.builder()
                     .name("Night Consumption")
                     .series(nightConsumptionChartValue)
+                    .build());
+            chartContainers.add(ChartContainer.builder()
+                    .name("Total Consumption")
+                    .series(totalConsumptionChartValue)
                     .build());
         }
         return chartContainers;

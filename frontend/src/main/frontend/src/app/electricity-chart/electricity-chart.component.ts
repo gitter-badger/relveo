@@ -21,7 +21,7 @@ export class ElectricityChartComponent implements OnInit {
   yAxisLabel = 'kW/h';
 
   colorScheme = {
-    domain: ['#0000FF', '#000000']
+    domain: ['#0000FF', '#000000', '#AA0000']
   };
 
   // line, area
