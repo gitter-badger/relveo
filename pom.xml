@@ -5,7 +5,7 @@
 
 	<groupId>com.andycostanza.relveo</groupId>
 	<artifactId>relveo</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.2</version>
     <packaging>pom</packaging>
 
 	<name>relveo</name>
